@@ -1,5 +1,7 @@
 import zipfile
 import codecs
+import sklearn.metrics
+import pandas as pd
 
 # this class encapsulates all data related to a span (text sequence) annotation
 # including the text it "covers" and the type (i.e. "concept") of the annotation
