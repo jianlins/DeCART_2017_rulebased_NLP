@@ -45,7 +45,13 @@ def read_brat_annotations(lines):
         annotations.append(anno)
     return annotations
         
-def read_annotations(archive_file, force_redownload = False):
+def read_annotations(archive_file, force_redownload = False):    
+    
+    annotated_doc_map = read_doc_annotations(archive_file, force_redownload)
+                    
+    return list(annotated_doc_map.values())
+
+def read_doc_annotations(archive_file, force_redownload = False):
     print('Reading annotations from file : ' + archive_file)
     filename = archive_file.split('/')[-1]
     
@@ -83,7 +89,7 @@ def read_annotations(archive_file, force_redownload = False):
             if anno.type == 'DOCUMENT_PNEUMONIA_YES':
                 anno_doc.positive_label = 1
                     
-    return list(annotated_doc_map.values())
+    return annotated_doc_map
 
 def calculate_prediction_metrics(gold_docs, prediction_function):
     gold_labels = [x.positive_label for x in gold_docs]
